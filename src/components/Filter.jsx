@@ -1,29 +1,45 @@
-import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 
-const Filter = () => {
-  useEffect(() => {});
+const filters = [
+  'UX Designer',
+  'Frontend Developer',
+  'Infra',
+  'iOS Developer',
+  'PHP Developer',
+];
 
-  return <Container />;
+const Filter = ({ selectedFilter, setSelectedFilter }) => {
+  const checkBoxes = filters.map((filter) => {
+    return (
+      <div key={filter}>
+        <input
+          type="radio"
+          id={filter}
+          name="filterGroup"
+          value={filter}
+          checked={selectedFilter === filter}
+          onChange={() => setSelectedFilter(filter)}
+        />
+        <label htmlFor={filter}>{filter}</label>
+      </div>
+    );
+  });
+  return (
+    <>
+      <h1>Filter</h1>
+      <Container>{checkBoxes}</Container>
+    </>
+  );
 };
 export default Filter;
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
-// Filter.propTypes = {
-//   users: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       first_name: PropTypes.string.isRequired,
-//       last_name: PropTypes.string.isRequired,
-//       title: PropTypes.string.isRequired,
-//       email: PropTypes.string.isRequired,
-//     }).isRequired
-//   ).isRequired,
-
-//   setFilteredUsers: PropTypes.func.isRequired,
-// };
+Filter.propTypes = {
+  selectedFilter: PropTypes.string.isRequired,
+  setSelectedFilter: PropTypes.func.isRequired,
+};

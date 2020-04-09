@@ -1,20 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 
-const List = ({ users }) => {
-  const [amountUsers, setAmountUsers] = useState(0);
+const List = ({ users, selectedFilter }) => {
+  const filteredUsers = users.filter((user) => user.title === selectedFilter);
 
-  useEffect(() => {
-    setAmountUsers(users.length);
-  }, [users]);
-  const userItems = users.map((user) => {
-    return <ListItem key={user.id} user={user} />;
+  const userItems = filteredUsers.map((user) => {
+    if (user.title === selectedFilter) {
+      return <ListItem key={user.id} user={user} />;
+    }
+    return null;
   });
+
   return (
     <Container>
-      <h3>Amount of shown employee&apos;s {amountUsers}</h3>
+      <h3>Amount of shown employee&apos;s {userItems.length}</h3>
       {userItems}
     </Container>
   );
@@ -36,4 +37,5 @@ List.propTypes = {
       email: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
+  selectedFilter: PropTypes.string.isRequired,
 };
