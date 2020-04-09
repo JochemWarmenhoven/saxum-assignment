@@ -32,7 +32,6 @@ const Content = () => {
       <List
         searchInput={searchInput}
         selectedFilter={selectedFilter}
-        searchInput={searchInput}
         users={users}
       />
       <p>{error}</p>
