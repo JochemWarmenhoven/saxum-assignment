@@ -3,14 +3,18 @@ import React from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 
-const List = ({ users, selectedFilter }) => {
-  const filteredUsers = users.filter((user) => user.title === selectedFilter);
-
+const List = ({ users, selectedFilter, searchInput }) => {
+  // Check if user is searching
+  const filteredUsers = searchInput
+    ? users.filter(
+        (user) =>
+          user.first_name.toLowerCase().includes(searchInput) ||
+          user.last_name.toLowerCase().includes(searchInput)
+      )
+    : users.filter((user) => user.title === selectedFilter);
+  // creates DOM elements
   const userItems = filteredUsers.map((user) => {
-    if (user.title === selectedFilter) {
-      return <ListItem key={user.id} user={user} />;
-    }
-    return null;
+    return <ListItem key={user.id} user={user} />;
   });
 
   return (
@@ -38,4 +42,5 @@ List.propTypes = {
     }).isRequired
   ).isRequired,
   selectedFilter: PropTypes.string.isRequired,
+  searchInput: PropTypes.string.isRequired,
 };
