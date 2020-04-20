@@ -1,25 +1,20 @@
-# Site URL
 
-https://goofy-goldberg-d5216a.netlify.com/
 
-## Available Scripts
+## To run project
 
-In the project directory, you can run:
+### `yarn install`
+
+To install all the dependencies.
 
 ### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Site URL
 
-### `yarn build`
+https://goofy-goldberg-d5216a.netlify.com/
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
+The site runs on this netlify url. If the page doesnt load on the first time wait for the servers to wake up.
+Because it is a free tier the servers go to sleep after some inactivity.
 
